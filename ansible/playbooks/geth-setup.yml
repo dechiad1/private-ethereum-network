@@ -1,0 +1,18 @@
+---
+- hosts: nodes
+  tasks:
+    - name: create datadir
+      become: yes
+      file:
+        path: /root/dannynet/data 
+        state: directory
+        mode: 0755
+
+    - name: provide genesis block file
+      become: yes
+      copy:
+        src: ../resources/genesis.json
+        dest: /root/dannynet/genesis.json
+        owner: root
+        group: root
+        mode: 0700
